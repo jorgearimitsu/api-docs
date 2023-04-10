@@ -6,6 +6,7 @@ gem "rails", "~> 7.0.4", ">= 7.0.4.2"
 gem "sqlite3", "~> 1.4"
 gem "puma", "~> 5.0"
 gem "rack-cors"
+gem "jsonapi-resources"
 
 group :development, :test do
   gem "debug"

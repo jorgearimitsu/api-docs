@@ -183,6 +183,8 @@ GEM
     rswag-ui (2.8.0)
       actionpack (>= 3.1, < 7.1)
       railties (>= 3.1, < 7.1)
+    shoulda-matchers (5.3.0)
+      activesupport (>= 5.2.0)
     sqlite3 (1.6.2-x86_64-linux)
     thor (1.2.1)
     timeout (0.3.2)
@@ -204,6 +206,7 @@ DEPENDENCIES
   rails (~> 7.0.4, >= 7.0.4.2)
   rspec-rails
   rswag
+  shoulda-matchers
   sqlite3 (~> 1.4)
 
 RUBY VERSION

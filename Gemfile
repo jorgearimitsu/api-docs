@@ -7,6 +7,7 @@ gem "sqlite3", "~> 1.4"
 gem "puma", "~> 5.0"
 gem "rack-cors"
 gem "jsonapi-resources"
+gem "rswag"
 
 group :development, :test do
   gem "debug"

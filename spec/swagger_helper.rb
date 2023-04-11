@@ -18,18 +18,15 @@ RSpec.configure do |config|
     'v1/swagger.yaml' => {
       openapi: '3.0.1',
       info: {
-        title: 'API V1',
-        version: 'v1'
+        title: 'Sample API',
+        version: 1.0,
+        description: 'This is a sample API to test the usage og rswag and jsonapi-resources gem.'
       },
       paths: {},
       servers: [
         {
-          url: 'https://{defaultHost}',
-          variables: {
-            defaultHost: {
-              default: 'www.example.com'
-            }
-          }
+          url: 'http://localhost:3000',
+          description: 'Development server'
         }
       ]
     }

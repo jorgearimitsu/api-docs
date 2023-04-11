@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a sample API to test the usage of `rswag` and `jsonapi-resources` gems
 
-Things you may want to cover:
+### Access the sample API documentation
 
-* Ruby version
+Run `bin/setup` to setup the project.
+Run the rails server `rails s`.
 
-* System dependencies
+To view docs with the `swagger-ui` access:
+http://localhost:3000/api-docs
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+To view docs with `redoc` access:
+http://localhost:3000/docs

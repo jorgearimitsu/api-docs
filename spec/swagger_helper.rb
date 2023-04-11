@@ -20,7 +20,7 @@ RSpec.configure do |config|
       info: {
         title: 'Sample API',
         version: 1.0,
-        description: 'This is a sample API to test the usage og rswag and jsonapi-resources gem.'
+        description: 'This is a sample API to test the usage of rswag and jsonapi-resources gem.'
       },
       paths: {},
       servers: [

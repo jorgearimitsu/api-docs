@@ -1,0 +1,195 @@
+---
+openapi: 3.0.1
+info:
+  title: Sample API
+  version: 1.0
+  description: This is a sample API to test the usage og rswag and jsonapi-resources
+    gem.
+paths:
+  "/api/v1/people":
+    post:
+      summary: Creates a person
+      tags:
+      - Person
+      parameters: []
+      responses:
+        '201':
+          description: Person created
+          content:
+            application/vnd.api+json:
+              examples:
+                person:
+                  value:
+                    data:
+                      id: '1'
+                      type: people
+                      attributes:
+                        first_name: John
+                        last_name: Doe
+                        email: johndoe@example.com
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      type:
+                        type: string
+                      attributes:
+                        type: object
+                        properties:
+                          first_name:
+                            type: string
+                          last_name:
+                            type: string
+                            nullable: true
+                          email:
+                            type: string
+        '422':
+          description: Invalid request
+          content:
+            application/vnd.api+json:
+              examples:
+                error:
+                  value:
+                    errors:
+                    - title: can't be blank
+                      detail: first-name - can't be blank
+                      code: '100'
+                      source:
+                        pointer: "/data/attributes/first-name"
+                      status: '422'
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                        detail:
+                          type: string
+                        code:
+                          type: string
+                        source:
+                          type: object
+                          properties:
+                            pointer:
+                              type: string
+                        status:
+                          type: string
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      default: people
+                    attributes:
+                      type: object
+                      properties:
+                        first_name:
+                          type: string
+                          example: John
+                        last_name:
+                          type: string
+                          example: Doe
+                        email:
+                          type: string
+                          example: johndoe@example.com
+                      required:
+                      - first_name
+                      - email
+  "/api/v1/people/{id}":
+    get:
+      summary: Retrieves a person
+      tags:
+      - Person
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Person found
+          content:
+            application/vnd.api+json:
+              examples:
+                person:
+                  value:
+                    data:
+                      id: '1'
+                      type: people
+                      links:
+                        self: http://localhost:3000/api/v1/people/1
+                      attributes:
+                        first_name: John
+                        last_name: Doe
+                        email: johndoe@example.com
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      type:
+                        type: string
+                      links:
+                        type: object
+                        properties:
+                          self:
+                            type: string
+                      attributes:
+                        type: object
+                        properties:
+                          first_name:
+                            type: string
+                          last_name:
+                            type: string
+                            nullable: true
+                          email:
+                            type: string
+        '404':
+          description: Person not found
+          content:
+            application/vnd.api+json:
+              examples:
+                person:
+                  value:
+                    errors:
+                    - title: Record not found
+                      detail: The record identified by 1 could not be found.
+                      code: '404'
+                      status: '404'
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                        detail:
+                          type: string
+                        code:
+                          type: string
+                        status:
+                          type: string
+servers:
+- url: http://localhost:3000
+  description: Development server
